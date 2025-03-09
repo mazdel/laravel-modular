@@ -60,12 +60,7 @@ class ModuleInit extends Command implements PromptsForMissingInput
             $this->info("$moduleName/$dirname created...");
         }
 
-        $prefixName = array_reduce(preg_split('/(?=[A-Z])/', $moduleName), function ($result, $word) {
-            if (!$word) return;
-            $lowercased = Str::lower($word);
-            if (!$result) return $lowercased;
-            return "$result-$lowercased";
-        }, "");
+        $prefixName = Str::snake($moduleName, '-');
 
         $routeContent = $this->createRouteFileContent($prefixName);
 
