@@ -48,7 +48,16 @@ class ModuleMakeController extends Command implements PromptsForMissingInput
         $this->newLine();
 
         $baseDir = base_path("app/Modules/$module/Controllers");
-
+        if (!File::isDirectory(base_path("app/Modules/$module"))) {
+            $this->error("ERROR : Module $module doesn't exist");
+            $this->newLine();
+            return;
+        }
+        if (File::isFile("$baseDir/$controllerName.php")) {
+            $this->error("ERROR : Controller $module/Controllers/$controllerName is already exist");
+            $this->newLine();
+            return;
+        }
         File::ensureDirectoryExists($baseDir);
 
         $stubContent = File::get(app_path("Console/Stubs/controller.stub"));
