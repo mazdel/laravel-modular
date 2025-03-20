@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -59,6 +60,9 @@ class ModuleInit extends Command implements PromptsForMissingInput
             File::ensureDirectoryExists("$baseModule/$dirname");
             $this->info("$moduleName/$dirname created...");
         }
+
+        // creating module controller
+        Artisan::call("module:make:controller $moduleName");
 
         $prefixName = Str::snake($moduleName, '-');
 
