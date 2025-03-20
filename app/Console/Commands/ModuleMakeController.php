@@ -61,7 +61,8 @@ class ModuleMakeController extends Command implements PromptsForMissingInput
         File::ensureDirectoryExists($baseDir);
 
         $stubContent = File::get(app_path("Console/Stubs/controller.stub"));
-        $content = str_replace("{{ controllerName }}", $controllerName, $stubContent);
+        $content = str_replace("{{ module }}", $module, $stubContent);
+        $content = str_replace("{{ controllerName }}", $controllerName, $content);
 
         File::put("$baseDir/$controllerName.php", $content);
         $this->info("Controller $module/Controllers/$controllerName is created");
