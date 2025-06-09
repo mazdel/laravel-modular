@@ -16,7 +16,9 @@ class ModuleMakeController extends Command implements PromptsForMissingInput
      */
     protected $signature = 'module:make:controller
         {module : Module Name}
-        {controllerName? : Controller Name, default is MainController}';
+        {controllerName? : Controller Name, default is MainController}
+        {--api}
+        ';
 
     /**
      * Prompt for missing input arguments using the returned questions.
@@ -60,7 +62,11 @@ class ModuleMakeController extends Command implements PromptsForMissingInput
         }
         File::ensureDirectoryExists($baseDir);
 
-        $stubContent = File::get(app_path("Console/Stubs/controller.stub"));
+        $stubPath = "Console/Stubs/controller.stub";
+        if ($this->option('api')) {
+            $stubPath = "Console/Stubs/api.controller.stub";
+        }
+        $stubContent = File::get(app_path($stubPath));
         $content = str_replace("{{ module }}", $module, $stubContent);
         $content = str_replace("{{ controllerName }}", $controllerName, $content);
 
