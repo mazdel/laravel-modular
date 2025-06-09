@@ -3,6 +3,7 @@
 namespace App\Modules\{{ module }}\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
 
 class {{ requestName }} extends FormRequest
 {
@@ -64,8 +65,8 @@ class {{ requestName }} extends FormRequest
     public function after(): array
     {
         return [
-            function () {
-                $validator = $this->validator;
+            function (Validator $validator) {
+                //
             },
         ];
     }
