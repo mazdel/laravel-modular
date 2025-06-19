@@ -62,7 +62,11 @@ class ModuleInit extends Command implements PromptsForMissingInput
         }
 
         // creating module controller
-        Artisan::call("module:make:controller $moduleName");
+        if ($this->option('only-api')) {
+            Artisan::call("module:make:controller $moduleName --api");
+        } else {
+            Artisan::call("module:make:controller $moduleName");
+        }
 
         $prefixName = Str::snake($moduleName, '-');
 
