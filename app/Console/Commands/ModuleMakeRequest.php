@@ -16,7 +16,9 @@ class ModuleMakeRequest extends Command implements PromptsForMissingInput
      */
     protected $signature = 'module:make:request
         {module : Module Name}
-        {requestName : Request Name}';
+        {requestName : Request Name}
+        {--api}
+        ';
 
     /**
      * Prompt for missing input arguments using the returned questions.
@@ -62,7 +64,11 @@ class ModuleMakeRequest extends Command implements PromptsForMissingInput
         }
         File::ensureDirectoryExists($baseDir);
 
-        $stubContent = File::get(app_path("Console/Stubs/request.stub"));
+        $stubPath = "Console/Stubs/request.stub";
+        if ($this->option('api')) {
+            $stubPath = "Console/Stubs/api.request.stub";
+        }
+        $stubContent = File::get(app_path($stubPath));
         $content = str_replace("{{ module }}", $module, $stubContent);
         $content = str_replace("{{ requestName }}", $requestName, $content);
 
