@@ -1,6 +1,16 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/laravel/compare/v12.0.9...12.x)
+## [Unreleased](https://github.com/laravel/laravel/compare/v12.0.11...12.x)
+
+## [v12.0.11](https://github.com/laravel/laravel/compare/v12.0.10...v12.0.11) - 2025-06-10
+
+**Full Changelog**: https://github.com/laravel/laravel/compare/v12.0.10...v12.0.11
+
+## [v12.0.10](https://github.com/laravel/laravel/compare/v12.0.9...v12.0.10) - 2025-06-09
+
+* fix alphabetical order by [@Khuthaily](https://github.com/Khuthaily) in https://github.com/laravel/laravel/pull/6627
+* [12.x] Reduce redundancy and keeps the .gitignore file cleaner by [@AhmedAlaa4611](https://github.com/AhmedAlaa4611) in https://github.com/laravel/laravel/pull/6629
+* [12.x] Fix: Add void return type to satisfy Rector analysis by [@Aluisio-Pires](https://github.com/Aluisio-Pires) in https://github.com/laravel/laravel/pull/6628
 
 ## [v12.0.9](https://github.com/laravel/laravel/compare/v12.0.8...v12.0.9) - 2025-05-26
 
