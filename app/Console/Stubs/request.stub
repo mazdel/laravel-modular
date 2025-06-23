@@ -3,7 +3,7 @@
 namespace App\Modules\{{ module }}\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Validator;
+use Illuminate\Contracts\Validation\Validator;
 
 class {{ requestName }} extends FormRequest
 {
