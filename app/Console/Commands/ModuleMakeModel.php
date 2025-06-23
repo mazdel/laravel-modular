@@ -63,8 +63,11 @@ class ModuleMakeModel extends Command implements PromptsForMissingInput
         File::ensureDirectoryExists($baseDir);
 
         $stubContent = File::get(app_path("Console/Stubs/model.stub"));
+        $tableName = Str::snake(Str::plural($modelName));
+
         $content = str_replace("{{ module }}", $module, $stubContent);
         $content = str_replace("{{ modelName }}", $modelName, $content);
+        $content = str_replace("{{ tableName }}", $tableName, $content);
 
         File::put("$baseDir/$modelName.php", $content);
         $this->info("Model $module/Models/$modelName is created");
