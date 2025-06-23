@@ -2,12 +2,12 @@
 
 namespace App\Modules\{{ module }}\Requests;
 
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class {{ requestName }} extends Request
+class {{ requestName }} extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
