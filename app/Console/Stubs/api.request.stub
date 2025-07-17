@@ -4,7 +4,7 @@ namespace App\Modules\{{ module }}\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class {{ requestName }} extends FormRequest
@@ -82,7 +82,7 @@ class {{ requestName }} extends FormRequest
     {
         $errors = $validator->errors();
 
-        return response()->json(
+        $response =  response()->json(
             data: [
                 'meta' => [
                     'code' => Response::HTTP_UNPROCESSABLE_ENTITY,
@@ -97,5 +97,6 @@ class {{ requestName }} extends FormRequest
             ]
         );
 
+        throw (new ValidationException($validator, $response));
     }
 }
