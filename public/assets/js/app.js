@@ -509,7 +509,8 @@ let skinPresets = {
 };
 class LayoutCustomizer {
   constructor() {
-    ((this.html = document.documentElement), (this.config = {}));
+    ((this.html = document.documentElement),
+      (this.config = window.defaultConfig ?? {}));
   }
   init() {
     (this.initConfig(),
@@ -532,7 +533,7 @@ class LayoutCustomizer {
     if (t && this.isFirstVisit()) {
       let e = new bootstrap.Offcanvas(t);
       setTimeout(() => {
-        e.show();
+        // e.show();
       }, 1e3);
     }
   }

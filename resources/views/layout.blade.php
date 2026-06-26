@@ -22,7 +22,7 @@
 
     <!-- Theme Config Js -->
     <script src="assets/js/config.js"></script>
-    <script src="paces/demo.js"></script>
+    <script src="assets/js/demo.js"></script>
 
     <!-- Vendor css -->
     <link href="assets/css/vendors.min.css"
