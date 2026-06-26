@@ -5,7 +5,7 @@
         style="background-image: url(assets/images/settings-bg.png)">
         <div>
             <h5 class="mb-1 fw-bold text-white text-uppercase">
-                Admin Customizer
+                Theme Customizer
             </h5>
             <p class="text-white text-opacity-75 fst-italic fw-medium mb-0">
                 Easily configure layout, styles, and preferences for your admin
@@ -966,11 +966,7 @@
 
     <div class="offcanvas-footer border-top p-3 text-center">
         <div class="row justify-content-end">
-            <div class="col-6">
-                <a class="btn btn-success fw-semibold py-2 w-100"
-                    href="index.html#"
-                    target="_blank"><i class="ti ti-basket me-2 fs-md"></i> Buy Now</a>
-            </div>
+
             <div class="col-6">
                 <button class="btn btn-danger fw-semibold py-2 w-100"
                     id="reset-layout"
