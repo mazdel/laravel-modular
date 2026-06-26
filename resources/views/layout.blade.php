@@ -42,11 +42,11 @@
     <!-- Begin page -->
     <div class="wrapper">
         <!-- Topbar Start -->
-        @include('partial.header')
+        @include('partial.headers.main')
         <!-- Topbar End -->
 
         <!-- Sidenav Menu Start -->
-        @include('partial.sidebar')
+        @include('partial.sidebars.main')
         <!-- Sidenav Menu End -->
 
         <!-- ============================================================== -->
