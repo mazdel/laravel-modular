@@ -12,7 +12,7 @@ class MainController extends Controller
      */
     public function index()
     {
-        return view('Example.views.welcome');
+        return view('Example.views.index');
     }
 
     /**
