@@ -53,7 +53,7 @@ class ModuleInit extends Command implements PromptsForMissingInput
         $shouldCreateDirs = [
             "Controllers",
             "Models",
-            "Requests",
+            "Validations",
             "Routes"
         ];
         foreach ($shouldCreateDirs as $dirname) {
@@ -68,9 +68,8 @@ class ModuleInit extends Command implements PromptsForMissingInput
             Artisan::call("module:make:controller $moduleName");
         }
 
-        $prefixName = Str::snake($moduleName, '-');
 
-        $routeContent = $this->createRouteFileContent($prefixName);
+        $routeContent = $this->createRouteFileContent($moduleName);
 
         if (!$this->option('only-web')) {
             File::put("$baseModule/Routes/api.php", $routeContent);
@@ -79,17 +78,20 @@ class ModuleInit extends Command implements PromptsForMissingInput
             File::put("$baseModule/Routes/web.php", $routeContent);
             File::ensureDirectoryExists("$baseModule/views");
             $this->info("$moduleName/views created...");
+            File::copy(resource_path('views/welcome.blade.php'), "$baseModule/views/welcome.blade.php");
         }
 
         $this->info("Module $moduleName is initiated");
         $this->newLine();
     }
 
-    private function createRouteFileContent($prefixName)
+    private function createRouteFileContent(string $moduleName)
     {
+        $prefixName = Str::snake($moduleName, '-');
 
         $stubContent = File::get(app_path("Console/Stubs/route.stub"));
-        $routeContent = str_replace("{{ prefix }}", $prefixName, $stubContent);
+        $routeContent = str_replace("{{ module }}", $moduleName, $stubContent);
+        $routeContent = str_replace("{{ prefix }}", $prefixName, $routeContent);
         return $routeContent;
     }
 }

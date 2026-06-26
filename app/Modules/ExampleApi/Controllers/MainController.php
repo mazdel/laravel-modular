@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Modules\{{ module }}\Controllers;
+namespace App\Modules\ExampleApi\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 
-class {{ controllerName }} extends Controller
+class MainController extends ApiController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('{{ module }}.views.welcome');
+        //
     }
 
     /**

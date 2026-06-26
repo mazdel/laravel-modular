@@ -1,13 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Modules\ExampleApi\Controllers\MainController;
 
-Route::prefix('example')->name('example.')->group(function () {
-    Route::get('/', function () {
-        return 'example module';
-    })->name('index');
-
-    Route::get('/list', function () {
-        return 'example list';
-    })->name('list');
+Route::group(['prefix' => 'example-api', 'as' => 'example-api.'], function () {
+        Route::get('/', [MainController::class, 'index'])->name('index');
 });
