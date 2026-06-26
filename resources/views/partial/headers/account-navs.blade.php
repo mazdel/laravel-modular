@@ -32,11 +32,11 @@
             </a>
 
             <!-- Notifications -->
-            <a class="dropdown-item"
+            {{-- <a class="dropdown-item"
                 href="javascript:void(0);">
                 <i class="ti ti-bell-ringing me-1 fs-lg align-middle"></i>
                 <span class="align-middle">Notifications</span>
-            </a>
+            </a> --}}
 
             <!-- Settings -->
             <a class="dropdown-item"
