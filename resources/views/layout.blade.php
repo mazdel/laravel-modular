@@ -23,6 +23,8 @@
     <!-- Theme Config Js -->
     <script src="assets/js/config.js"></script>
     <script src="assets/js/demo.js"></script>
+    <!-- Jquery -->
+    <script src="assets/js/jquery-4.0.0.min.js"></script>
 
     <!-- Vendor css -->
     <link href="assets/css/vendors.min.css"
@@ -36,6 +38,7 @@
         type="text/css" />
 
     @stack('styles')
+
 </head>
 
 <body>
