@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Modules\{{ module }}\Controllers;
+namespace App\Modules\ExampleWeb\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class {{ controllerName }} extends Controller
+class MainController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('{{ module }}.views.index');
+        return view('ExampleWeb.views.index');
     }
 
     /**

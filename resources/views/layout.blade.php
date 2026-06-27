@@ -94,10 +94,10 @@
     <script src="assets/js/maps/world.js"></script>
 
     <!-- Custom table -->
-    <script src="assets/js/pages/custom-table.js"></script>
+    {{-- <script src="assets/js/pages/custom-table.js"></script> --}}
 
     <!-- Dashboard js -->
-    <script src="assets/js/pages/dashboard-ecommerce.js"></script>
+    {{-- <script src="assets/js/pages/dashboard-ecommerce.js"></script> --}}
 
     @stack('scripts')
 </body>

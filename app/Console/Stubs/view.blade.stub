@@ -2,7 +2,7 @@
 @php
     $breadcrumb = [
         ['title' => 'Home', 'link' => '/'],
-        ['title' => 'Example', 'link' => route('example.index')],
+        ['title' => '{{ moduleTitle }}', 'link' => route('{{ routePrefix }}.index')],
         ['title' => 'Index', 'link' => '#'],
     ];
 @endphp
@@ -10,9 +10,9 @@
     @json($breadcrumb)
 @endsection
 
-@section('title', 'Example')
-@section('meta-description', 'Example')
-@section('meta-keywords', 'Example, Laravel')
+@section('title', '{{ moduleTitle }}')
+@section('meta-description', '{{ moduleTitle }}')
+@section('meta-keywords', '{{ moduleTitle }}, Laravel')
 @section('content')
     <div class="row">
         <!-- end col -->
