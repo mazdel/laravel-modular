@@ -1,5 +1,12 @@
 @use('Illuminate\Support\Facades\File')
 @use('Illuminate\Support\Str')
+@use('App\Models\Menu')
+@php
+    $menu = Menu::where('parent', null)
+        ->with(['children.children'])
+        ->get();
+@endphp
+{{-- @dd($menu[3]->toArray()) --}}
 <div class="sidenav-menu">
     <!-- Brand Logo -->
     <a class="logo"
@@ -34,16 +41,10 @@
         @include('partial.sidebars.account-navs')
 
         <!--- Sidenav Menu -->
-        @php
-            $sampleMenuJson = File::get(public_path('assets/js/sidebar-menu.json'));
-            $menu = json_decode($sampleMenuJson);
-        @endphp
-        {{-- @dd($menu) --}}
         <div id="sidenav-menu">
             <ul class="side-nav">
                 @foreach ($menu as $item)
                     @php
-                        $item = (object) $item;
                         $key = Str::snake(Str::lower("{$item->label} {$loop->iteration}"));
                     @endphp
                     @if ($item->type == 'title')
@@ -53,12 +54,12 @@
                         @continue
                     @endif
                     <li class="side-nav-item">
-                        <a @if (collect($item->children)->isNotEmpty()) data-bs-toggle="collapse"
+                        <a @if ($item->children->isNotEmpty()) data-bs-toggle="collapse"
                             href="#{{ $key }}"
                             aria-controls="{{ $key }}"
                             aria-expanded="false"
                             @else
-                            href="{{ $item->href ?? '#' }}" @endif
+                            href="{{ $item->route ? route($item->route) : $item->href ?? '#' }}" @endif
                             class="side-nav-link {{ $item->aclass ?? '' }}">
                             @if ($item->icon)
                                 <span class="menu-icon">
@@ -66,7 +67,7 @@
                                 </span>
                             @endif
                             <span class="menu-text">{{ $item->label }}</span>
-                            @if (collect($item->children)->isNotEmpty())
+                            @if ($item->children->isNotEmpty() && !$item->badge)
                                 <span class="menu-arrow"></span>
                             @endif
                             @if ($item->badge)
@@ -75,24 +76,23 @@
                                 </span>
                             @endif
                         </a>
-                        @if (collect($item->children)->isNotEmpty())
+                        @if ($item->children->isNotEmpty())
                             <div class="collapse"
                                 id="{{ $key }}">
                                 <ul class="sub-menu">
                                     @foreach ($item->children as $subItem)
                                         @php
-                                            $subItem = (object) $subItem;
                                             $subKey = Str::snake(
                                                 Str::lower("{$subItem->label} {$loop->iteration}"),
                                             );
                                         @endphp
                                         <li class="side-nav-item">
-                                            <a @if (collect($subItem->children)->isNotEmpty()) data-bs-toggle="collapse"
+                                            <a @if ($subItem->children->isNotEmpty()) data-bs-toggle="collapse"
                                                 href="#{{ $subKey }}"
                                                 aria-controls="{{ $subKey }}"
                                                 aria-expanded="false"
                                                 @else
-                                                href="{{ $subItem->href ?? '#' }}" @endif
+                                                href="{{ $subItem->route ? route($subItem->route) : $subItem->href ?? '#' }}" @endif
                                                 class="side-nav-link {{ $subItem->aclass ?? '' }}">
                                                 @if ($subItem->icon)
                                                     <span class="menu-icon">
@@ -101,7 +101,7 @@
                                                 @endif
                                                 <span
                                                     class="menu-text">{{ $subItem->label }}</span>
-                                                @if (collect($subItem->children)->isNotEmpty())
+                                                @if ($subItem->children->isNotEmpty() && !$subItem->badge)
                                                     <span class="menu-arrow"></span>
                                                 @endif
                                                 @if ($subItem->badge)
@@ -110,13 +110,12 @@
                                                     </span>
                                                 @endif
                                             </a>
-                                            @if (collect($subItem->children)->isNotEmpty())
+                                            @if ($subItem->children->isNotEmpty())
                                                 <div class="collapse"
                                                     id="{{ $subKey }}">
                                                     <ul class="sub-menu">
                                                         @foreach ($subItem->children as $subItem2)
                                                             @php
-                                                                $subItem2 = (object) $subItem2;
                                                                 $subKey = Str::snake(
                                                                     Str::lower(
                                                                         "{$subItem2->label} {$loop->iteration}",
@@ -125,7 +124,7 @@
                                                             @endphp
                                                             <li class="side-nav-item">
                                                                 <a class="side-nav-link {{ $subItem2->aclass ?? '' }}"
-                                                                    href="{{ $subItem2->href ?? '#' }}">
+                                                                    href="{{ $subItem2->route ? route($subItem2->route) : $subItem2->href ?? '#' }}">
                                                                     <span class="menu-text">
                                                                         {{ $subItem2->label }}
                                                                     </span>
