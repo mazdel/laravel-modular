@@ -13,6 +13,10 @@ class MenuSeeder extends Seeder
      */
     public function run(): void
     {
+        if (!File::exists(public_path('assets/js/sidebar-menu.json'))) {
+            $this->command->info("sidebar-menu.json is not exist, skipping");
+            return;
+        }
         $sampleMenuJson = File::get(public_path('assets/js/sidebar-menu.json'));
         $menu = json_decode($sampleMenuJson);
         foreach ($menu as $item) {
