@@ -78,15 +78,18 @@ class ModuleInit extends Command implements PromptsForMissingInput
             File::put("$baseModule/Routes/web.php", $routeContent);
             File::ensureDirectoryExists("$baseModule/views");
             $this->info("$moduleName/views created...");
-            // File::copy(resource_path('views/welcome.blade.php'), "$baseModule/views/welcome.blade.php");
 
             $viewStubPath = "Console/Stubs/view.blade.stub";
             $prefixName = Str::snake($moduleName, "-");
 
-            $viewStubContent = File::get(app_path($viewStubPath));
-            $viewContent = str_replace("{{ moduleTitle }}", Str::headline($moduleName), $viewStubContent);
-            $viewContent = str_replace("{{ routePrefix }}", $prefixName, $viewContent);
-            File::put("$baseModule/views/index.blade.php", $viewContent);
+            if (File::exists(app_path($viewStubPath))) {
+                $viewStubContent = File::get(app_path($viewStubPath));
+                $viewContent = str_replace("{{ moduleTitle }}", Str::headline($moduleName), $viewStubContent);
+                $viewContent = str_replace("{{ routePrefix }}", $prefixName, $viewContent);
+                File::put("$baseModule/views/index.blade.php", $viewContent);
+            } else {
+                File::copy(resource_path('views/welcome.blade.php'), "$baseModule/views/index.blade.php");
+            }
         }
 
         $this->info("Module $moduleName is initiated");
