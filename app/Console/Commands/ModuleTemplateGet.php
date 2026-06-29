@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use ZipArchive;
 
-class ModuleGetTemplate extends Command implements PromptsForMissingInput
+class ModuleTemplateGet extends Command implements PromptsForMissingInput
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'module:get:template
+    protected $signature = 'module:template:get
         {templateName : Template Name}
         ';
 
