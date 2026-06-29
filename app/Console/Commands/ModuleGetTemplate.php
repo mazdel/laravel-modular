@@ -129,6 +129,8 @@ class ModuleGetTemplate extends Command implements PromptsForMissingInput
                         $this->info("- {$stubName} moved");
                     }
                 }
+                $this->info("Removing {$targetPath}/{$templateName}");
+                File::deleteDirectory("{$targetPath}/{$templateName}");
             } else {
                 $this->error("Failed to open or corrupt ZIP file.");
                 return Command::FAILURE;
