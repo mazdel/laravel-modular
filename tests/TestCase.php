@@ -1,10 +1,14 @@
 <?php
 
-namespace Tests;
+namespace Mazdel\LaravelModular\Tests;
 
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Mazdel\LaravelModular\LaravelModularServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
-abstract class TestCase extends BaseTestCase
+abstract class TestCase extends Orchestra
 {
-    //
+    protected function getPackageProviders($app): array
+    {
+        return [LaravelModularServiceProvider::class];
+    }
 }
