@@ -4,7 +4,7 @@ A Laravel package for scaffolding modules and automatically loading their web an
 
 ## Requirements
 
-- PHP 8.3+
+- PHP 8.4+
 - Laravel 11, 12, or 13
 
 ## Installation
