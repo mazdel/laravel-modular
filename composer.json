@@ -1,6 +1,6 @@
 {
   "$schema": "https://getcomposer.org/schema.json",
-  "name": "mazdel/laravel-modular",
+  "name": "mazdel/dayravel",
   "description": "Laravel module scaffolding commands with automatic module route discovery.",
   "keywords": [
     "laravel",
@@ -22,18 +22,18 @@
   },
   "autoload": {
     "psr-4": {
-      "Mazdel\\LaravelModular\\": "src/"
+      "Mazdel\\DayRavel\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Mazdel\\LaravelModular\\Tests\\": "tests/"
+      "Mazdel\\DayRavel\\Tests\\": "tests/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Mazdel\\LaravelModular\\LaravelModularServiceProvider"
+        "Mazdel\\DayRavel\\DayRavelServiceProvider"
       ]
     }
   },

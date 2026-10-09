@@ -1,6 +1,6 @@
 <?php
 
-namespace Mazdel\LaravelModular\Commands;
+namespace Mazdel\DayRavel\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
@@ -47,7 +47,7 @@ class ModuleMakeTrait extends Command implements PromptsForMissingInput
 
         File::ensureDirectoryExists($traitsDir);
 
-        $stubContent = File::get(__DIR__.'/../../resources/stubs/trait.stub');
+        $stubContent = File::get(__DIR__ . '/../../resources/stubs/trait.stub');
         $content = str_replace('{{ traitName }}', $traitName, $stubContent);
 
         File::put("$traitsDir/$traitName.php", $content);

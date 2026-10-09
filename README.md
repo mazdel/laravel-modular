@@ -10,16 +10,16 @@ A Laravel package for scaffolding modules and automatically loading their web an
 ## Installation
 
 ```bash
-composer require mazdel/laravel-modular
+composer require mazdel/dayravel
 ```
 
 Laravel discovers the package service provider automatically. Publish the configuration before changing the module path or route groups:
 
 ```bash
-php artisan vendor:publish --tag=laravel-modular-config
+php artisan vendor:publish --tag=dayravel-config
 ```
 
-This creates `config/laravel-modular.php` in your application.
+This creates `config/dayravel.php` in your application.
 
 ## Commands
 
@@ -67,7 +67,7 @@ The `--api` option selects the API stub for controllers, requests, and validatio
 
 The package loads each module's `Routes/web.php` and `Routes/api.php` files beneath the configured modules path. Web routes use the configured web middleware; API routes use the configured prefix, route-name prefix, and API middleware.
 
-The published `config/laravel-modular.php` file contains these defaults:
+The published `config/dayravel.php` file contains these defaults:
 
 ```php
 return [

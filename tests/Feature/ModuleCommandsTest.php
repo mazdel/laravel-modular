@@ -1,9 +1,9 @@
 <?php
 
-namespace Mazdel\LaravelModular\Tests\Feature;
+namespace Mazdel\DayRavel\Tests\Feature;
 
 use Illuminate\Support\Facades\File;
-use Mazdel\LaravelModular\Tests\TestCase;
+use Mazdel\DayRavel\Tests\TestCase;
 
 class ModuleCommandsTest extends TestCase
 {
@@ -21,12 +21,12 @@ class ModuleCommandsTest extends TestCase
 
         $modulePath = app_path('Modules/Catalog');
 
-        $this->assertFileExists($modulePath.'/Controllers/MainController.php');
-        $this->assertFileExists($modulePath.'/Models');
-        $this->assertFileExists($modulePath.'/Validations');
-        $this->assertFileExists($modulePath.'/Routes/api.php');
-        $this->assertFileDoesNotExist($modulePath.'/Routes/web.php');
-        $this->assertStringContainsString('namespace App\\Modules\\Catalog\\Controllers;', File::get($modulePath.'/Controllers/MainController.php'));
+        $this->assertFileExists($modulePath . '/Controllers/MainController.php');
+        $this->assertFileExists($modulePath . '/Models');
+        $this->assertFileExists($modulePath . '/Validations');
+        $this->assertFileExists($modulePath . '/Routes/api.php');
+        $this->assertFileDoesNotExist($modulePath . '/Routes/web.php');
+        $this->assertStringContainsString('namespace App\\Modules\\Catalog\\Controllers;', File::get($modulePath . '/Controllers/MainController.php'));
     }
 
     public function test_it_creates_module_models_from_the_package_stub(): void
@@ -50,7 +50,7 @@ class ModuleCommandsTest extends TestCase
         $this->refreshApplication();
 
         $route = collect($this->app['router']->getRoutes()->getRoutes())
-            ->first(fn ($route) => $route->getName() === 'api.v1.products');
+            ->first(fn($route) => $route->getName() === 'api.v1.products');
 
         $this->assertNotNull($route);
         $this->assertSame('v1/products', $route->uri());

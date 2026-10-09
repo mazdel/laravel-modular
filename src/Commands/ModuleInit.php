@@ -1,13 +1,13 @@
 <?php
 
-namespace Mazdel\LaravelModular\Commands;
+namespace Mazdel\DayRavel\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Mazdel\LaravelModular\Concerns\InteractsWithModules;
+use Mazdel\DayRavel\Concerns\InteractsWithModules;
 
 class ModuleInit extends Command implements PromptsForMissingInput
 {

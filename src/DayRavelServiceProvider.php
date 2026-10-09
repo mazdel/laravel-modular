@@ -1,24 +1,24 @@
 <?php
 
-namespace Mazdel\LaravelModular;
+namespace Mazdel\DayRavel;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
-use Mazdel\LaravelModular\Commands\ModuleInit;
-use Mazdel\LaravelModular\Commands\ModuleMakeController;
-use Mazdel\LaravelModular\Commands\ModuleMakeMiddleware;
-use Mazdel\LaravelModular\Commands\ModuleMakeModel;
-use Mazdel\LaravelModular\Commands\ModuleMakeRequest;
-use Mazdel\LaravelModular\Commands\ModuleMakeTrait;
-use Mazdel\LaravelModular\Commands\ModuleMakeValidation;
-use Mazdel\LaravelModular\Commands\ModuleTemplateGet;
-use Mazdel\LaravelModular\Commands\ModuleTemplateList;
+use Mazdel\DayRavel\Commands\ModuleInit;
+use Mazdel\DayRavel\Commands\ModuleMakeController;
+use Mazdel\DayRavel\Commands\ModuleMakeMiddleware;
+use Mazdel\DayRavel\Commands\ModuleMakeModel;
+use Mazdel\DayRavel\Commands\ModuleMakeRequest;
+use Mazdel\DayRavel\Commands\ModuleMakeTrait;
+use Mazdel\DayRavel\Commands\ModuleMakeValidation;
+use Mazdel\DayRavel\Commands\ModuleTemplateGet;
+use Mazdel\DayRavel\Commands\ModuleTemplateList;
 
-class LaravelModularServiceProvider extends ServiceProvider
+class DayRavelServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/laravel-modular.php', 'laravel-modular');
+        $this->mergeConfigFrom(__DIR__ . '/../config/dayravel.php', 'dayravel');
         $this->mergeConfigFrom(__DIR__ . '/../config/view.php', 'view');
         $this->mergeConfigFrom(__DIR__ . '/../config/cors.php', 'cors');
     }
@@ -26,10 +26,10 @@ class LaravelModularServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/laravel-modular.php' => config_path('laravel-modular.php'),
+            __DIR__ . '/../config/dayravel.php' => config_path('dayravel.php'),
             __DIR__ . '/../config/view.php' => config_path('view.php'),
             __DIR__ . '/../config/cors.php' => config_path('cors.php'),
-        ], 'laravel-modular-config');
+        ], 'dayravel-config');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -50,17 +50,17 @@ class LaravelModularServiceProvider extends ServiceProvider
 
     private function loadModuleRoutes(): void
     {
-        $modulesPath = config('laravel-modular.modules_path', app_path('Modules'));
+        $modulesPath = config('dayravel.modules_path', app_path('Modules'));
 
         foreach (File::glob($modulesPath . '/*/Routes/web.php') as $route) {
-            $this->app['router']->middleware(config('laravel-modular.web.middleware'))
+            $this->app['router']->middleware(config('dayravel.web.middleware'))
                 ->group($route);
         }
 
         foreach (File::glob($modulesPath . '/*/Routes/api.php') as $route) {
-            $this->app['router']->prefix(config('laravel-modular.api.prefix'))
-                ->as(config('laravel-modular.api.name'))
-                ->middleware(config('laravel-modular.api.middleware'))
+            $this->app['router']->prefix(config('dayravel.api.prefix'))
+                ->as(config('dayravel.api.name'))
+                ->middleware(config('dayravel.api.middleware'))
                 ->group($route);
         }
     }

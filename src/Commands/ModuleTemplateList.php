@@ -1,6 +1,6 @@
 <?php
 
-namespace Mazdel\LaravelModular\Commands;
+namespace Mazdel\DayRavel\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;

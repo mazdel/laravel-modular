@@ -1,13 +1,13 @@
 <?php
 
-namespace Mazdel\LaravelModular\Commands;
+namespace Mazdel\DayRavel\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Mazdel\LaravelModular\Concerns\InteractsWithModules;
+use Mazdel\DayRavel\Concerns\InteractsWithModules;
 use ZipArchive;
 
 class ModuleTemplateGet extends Command implements PromptsForMissingInput
